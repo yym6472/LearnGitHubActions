@@ -14,7 +14,8 @@ jobs:
         with:
           python-version: '3.6'
           architecture: 'x64'
-      - run: pip install qrcode
+      - run: pip install qrcode==7.3.1
+      - run: pip install PIL
       - run: RESP_CONTENT=`python ${{ github.workspace }}/QRCodeGenerator/gen_qr_code.py --message "${{ github.event.comment.body }}" --local_repo_path "${{ github.workspace }}"`
       - name: Commit and upload the generated image
         run: |
