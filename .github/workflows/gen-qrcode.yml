@@ -4,7 +4,16 @@ on:
     types: [created]
 jobs: 
   print_logs:
+    # if: ${{ github.event.sender.login == 'yym6472' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "The comment is ${{ github.event.comment.body }}"
       - run: echo "The user is ${{ github.event.sender.login }}"
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.6'
+          architecture: 'x64'
+      - run: pip install qrcode
+      - run: python ${{ github.workspace }}/QRCodeGenerator/gen_qr_code.py --message "${{ github.event.comment.body }}"
+      - 
