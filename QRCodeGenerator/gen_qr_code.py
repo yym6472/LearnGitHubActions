@@ -6,11 +6,11 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--repo_path", type=str, required=True)
+    parser.add_argument("--local_repo_path", type=str, required=True)
     parser.add_argument("--message", type=str, required=True)
     args = parser.parse_args()
 
-    image_dir = os.path.join(args.repo_path, "QRCodeGenerator", "images")
+    image_dir = os.path.join(args.local_repo_path, "QRCodeGenerator", "images")
     if not os.path.exists(image_dir):
         os.mkdir(image_dir)
 

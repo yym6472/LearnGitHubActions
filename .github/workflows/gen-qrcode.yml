@@ -15,5 +15,11 @@ jobs:
           python-version: '3.6'
           architecture: 'x64'
       - run: pip install qrcode
-      - run: python ${{ github.workspace }}/QRCodeGenerator/gen_qr_code.py --message "${{ github.event.comment.body }}"
-      - 
+      - run: RESP_CONTENT=`python ${{ github.workspace }}/QRCodeGenerator/gen_qr_code.py --message "${{ github.event.comment.body }}" --local_repo_path "${{ github.workspace }}"`
+      - run: |
+        git config --local user.email "yanyuanmeng1996@qq.com"
+        git config --local user.name "yym6472"
+        git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+        git add .
+        git commit --allow-empty -m "Uploaded image"
+        git push origin master
