@@ -3,8 +3,8 @@ on:
   issue_comment:
     types: [created]
 jobs: 
-  print_logs:
-    # if: ${{ github.event.sender.login == 'yym6472' }}
+  generate_qr_code:
+    if: ${{ github.event.sender.login != 'yym6472' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "The comment is ${{ github.event.comment.body }}"
