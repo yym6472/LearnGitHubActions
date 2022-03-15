@@ -23,6 +23,6 @@ jobs:
           git config --local user.name "yym6472"
           git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add .
-          git commit -m "Uploaded image"
+          git commit --allow-empty -m "Uploaded image"
           git push origin master
       - run: echo ${RESP_CONTENT}
