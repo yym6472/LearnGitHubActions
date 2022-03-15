@@ -33,4 +33,4 @@ jobs:
             --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments \
             --header 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
             --header 'Accept: application/vnd.github.v3+json' \
-            --data '{"body": "${{ steps.generate_qr_code_image.outputs.image_markdown_code }}"}'
+            --data '{"body": "The QR code for `${{ github.event.comment.body }}` is: \n${{ steps.generate_qr_code_image.outputs.image_markdown_code }}"}'
