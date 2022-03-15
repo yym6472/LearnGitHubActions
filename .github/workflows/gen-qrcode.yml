@@ -16,7 +16,9 @@ jobs:
           architecture: 'x64'
       - run: pip install qrcode==7.3.1
       - run: pip install pillow
-      - run: python ${{ github.workspace }}/QRCodeGenerator/gen_qr_code.py --message "${{ github.event.comment.body }}" --local_repo_path "${{ github.workspace }}"
+      - name: Generate QR code image
+        id: generate_qr_code_image
+        run: echo "::set-output name=random_number::$(python ${{ github.workspace }}/QRCodeGenerator/gen_qr_code.py --message '${{ github.event.comment.body }}' --local_repo_path '${{ github.workspace }}')"
       - name: Commit and upload the generated image
         run: |
           git config --local user.email "yanyuanmeng1996@qq.com"
@@ -25,3 +27,6 @@ jobs:
           git add .
           git commit --allow-empty -m "Uploaded image"
           git push origin master
+      # - name: Submit image URI to issue (Through GitHub API)
+      #   run: |
+          
