@@ -6,5 +6,5 @@ jobs:
   print_logs:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "The comment is ${{ github.event.comment }}"
-      - run: echo "The user is ${{ github.event.sender }}"
+      - run: echo "The comment is ${{ github.event.comment.body }}"
+      - run: echo "The user is ${{ github.event.sender.login }}"
