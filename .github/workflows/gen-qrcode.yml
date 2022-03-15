@@ -30,7 +30,7 @@ jobs:
         run: |
           echo "${{ steps.generate_qr_code_image.outputs.image_markdown_code }}"
           curl --request POST \
-            --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.issue_number }}/comments \
+            --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments \
             --header 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
             --header 'Accept: application/vnd.github.v3+json' \
             --data '{"body": "${{ steps.generate_qr_code_image.outputs.image_markdown_code }}"}'
