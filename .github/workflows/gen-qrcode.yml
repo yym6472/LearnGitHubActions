@@ -4,7 +4,7 @@ on:
     types: [created]
 jobs: 
   generate_qr_code:
-    if: ${{ github.event.sender.login != 'yym6472' }}
+    # if: ${{ github.event.sender.login != 'yym6472' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "The comment is ${{ github.event.comment.body }}"
